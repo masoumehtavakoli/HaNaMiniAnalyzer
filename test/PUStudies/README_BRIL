@@ -1,0 +1,11 @@
+#install brilcal like this:
+export PATH=$HOME/.local/bin:/afs/cern.ch/cms/lumi/brilconda-1.0.3/bin:$PATH
+pip install --install-option="--prefix=$HOME/.local" brilws
+export PATH=$HOME/.local/bin:/afs/cern.ch/cms/lumi/brilconda-1.0.3/bin:$PATH
+#and then run this command:
+brilcalc lumi --byls -i /afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions18/13TeV/PromptReco/Cert_314472-325175_13TeV_PromptReco_Collisions18_JSON.txt --normtag /cvmfs/cms-bril.cern.ch/cms-lumi-pog/Normtags/normtag_PHYSICS.json -u hz/ub -o LumiPerLumiSection.csv
+
+#what Geor. suggested and it solved the Brilcalc problem
+-export PATH=$HOME/.local/bin:/afs/cern.ch/cms/lumi/brilconda-1.1.7/bin:$PATH 
+-pip uninstall brilws
+-pip install --install-option="--prefix=$HOME/.local" brilws

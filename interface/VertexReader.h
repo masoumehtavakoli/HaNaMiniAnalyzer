@@ -22,18 +22,18 @@ public:
   int nGoodVtx;
   int npv;
   int npv50ns;
-
+  int nVeryGoodVtx;
   int nTracksPV;
   int nTracksW05PV;
-
+  double ndof[50];
   int nTracksAll;
   int nTracksW05All;
+  int nVVeryGoodVer ;
  
   const reco::Vertex * PV();
 private :
   bool IsData ;
-  bool CheckVertex(VertexCollection::value_type vtx);
-
+  bool CheckVertex(VertexCollection::value_type vtx , double cutOnZ = 24.0, double cutonNdof = 4.0);
   edm::Handle<std::vector< PileupSummaryInfo > >  PupInfo;
   edm::EDGetTokenT< std::vector< PileupSummaryInfo > > PileupToken_;
   edm::LumiReWeighting LumiWeights_;

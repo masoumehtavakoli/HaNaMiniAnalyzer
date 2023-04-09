@@ -12,11 +12,11 @@ VertexReader::VertexReader( edm::ParameterSet const& iPS, edm::ConsumesCollector
   }
 }
 
-bool VertexReader::CheckVertex(VertexCollection::value_type vtx){ 
-  if( !IsData ) return true;
+bool VertexReader::CheckVertex(VertexCollection::value_type vtx , double cutOnZ , double cutonNdof){ 
+  if( !IsData ) return true; 
   //cout << vtx.position().z() << " " << vtx.ndof() << "  " << vtx.position() << endl;
-  return (fabs(vtx.position().z()) < 24.0 &&
-	  vtx.ndof() > 4.0 &&
+  return (fabs(vtx.position().z()) < cutOnZ &&
+	  vtx.ndof() > cutonNdof &&
 	  vtx.position().rho() < 2.0 ); 
 };
 
@@ -28,6 +28,9 @@ double VertexReader::Read( const edm::Event& iEvent ){
     BaseEventReader< VertexCollection >::Read( iEvent );
     vtxMult = handle->size();
     nGoodVtx = 0;
+    nVeryGoodVtx =0;
+    //ndof=0;
+    nVVeryGoodVer = 0;
     auto vtx = handle->front();
     //cout << handle->size() << endl;
     if(!CheckVertex(vtx) )
@@ -39,13 +42,28 @@ double VertexReader::Read( const edm::Event& iEvent ){
       nTracksAll = nTracksW05All = 0;
     }
 
-    for( auto vtx1 : *handle )
+    for( auto vtx1 : *handle ){
       if( CheckVertex(vtx1) ){
 	nGoodVtx++;
 
 	nTracksAll += vtx.tracksSize();
 	nTracksW05All += vtx.nTracks(0.5);
       }
+
+      if ( CheckVertex(vtx1, 10) ){
+        nVeryGoodVtx++;
+      }
+      if ( CheckVertex(vtx1, 5, 8)){
+        ndof[nVVeryGoodVer] = vtx1.ndof();
+	nVVeryGoodVer++;
+      }
+        
+    // for (int i = 0; i < 50; i++){
+    //   if ( CheckVertex(vtx1, 5, 8)){
+    //     int nVVeryGoodVer[i] = {} ;
+    //   } 
+    // }
+    }
 
     if( !IsData ){
       iEvent.getByToken(PileupToken_, PupInfo);

@@ -48,7 +48,7 @@ ZeroBias22G = Sample("ZeroBias22G" , 0 , False , "/ZeroBias/Run2022G-PromptReco-
 #SimMiniAod = Sample("SimMiniAod" , 0 , False , "/SingleNeutrino_E-10-gun/Run3Winter22MiniAOD-L1TPU0to99FEVT_SNB_122X_mcRun3_2021_realistic_v9-v2/MINIAODSIM")
 
 
-MINIAOD22.extend( [ZeroBias22A , ZeroBias22B , ZeroBias22C , ZeroBias22D , ZeroBias22E , ZeroBias22F , ZeroBias22G ])
+#MINIAOD22.extend( [ZeroBias22A , ZeroBias22B , ZeroBias22C , ZeroBias22D , ZeroBias22E , ZeroBias22F , ZeroBias22G ])
 
 
 SimMiniAod = Sample("SimMiniAOD22" , 1 , False , "/SingleNeutrino_E-10-gun/Run3Winter22MiniAOD-L1TPU0to99FEVT_SNB_122X_mcRun3_2021_realistic_v9-v2/MINIAODSIM")

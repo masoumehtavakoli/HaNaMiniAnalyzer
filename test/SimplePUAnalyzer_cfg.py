@@ -71,7 +71,7 @@ job = theSample.Jobs[options.job ]
 process.source.fileNames.extend( job.Inputs )
 process.TFileService.fileName = job.Output
 
-process.maxEvents.input = 20000 #options.maxEvents
+process.maxEvents.input = options.maxEvents
 
 process.p = cms.Path( process.PUAnalyzer )
 

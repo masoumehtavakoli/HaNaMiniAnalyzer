@@ -45,7 +45,7 @@ for sample in samples:
     print("output                  = $(ClusterId)_$(ProcId).out" , file=file)
     print( "error                   = $(ClusterId)_$(ProcId).err" , file=file)
     print( "log                     = $(ClusterId)_$(ProcId).log" , file=file)
-    print( '+JobFlavour             = "tomorrow"' , file=file)
+    print( '+JobFlavour             = "testmatch"' , file=file)
     print( "environment             = CONDORJOBID=$(ProcId)" , file=file)
     print( "notification            = Error" , file=file)
     print( "" , file=file)
@@ -53,7 +53,7 @@ for sample in samples:
         "vomsaddress":"%s/%s/.x509up_u%d" % (os.getcwd() , workingdir , os.getuid()) ,
         "scram":os.getenv("SCRAM_ARCH") ,
         "cmsver":os.getenv("CMSSW_VERSION"),
-        "gitco":"UL2018" ,
+        "gitco":"PUGNN" ,
         "sample":sample.Name ,
         "out":prefix,
         "outdir":OutPath,

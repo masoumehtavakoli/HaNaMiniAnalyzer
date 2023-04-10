@@ -23,6 +23,8 @@ HaNaBaseMiniAnalyzer::HaNaBaseMiniAnalyzer(const edm::ParameterSet& iConfig):
   IsData( iConfig.getParameter< bool >("isData") ),
   SampleName(iConfig.getParameter< string >("sample") )
 {
+
+  cout << "(HaNa) IsData =" << IsData << endl;
   LHEReader = NULL;
   if( !IsData ){
     if( iConfig.exists( "LHE" ) ){

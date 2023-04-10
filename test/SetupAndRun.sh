@@ -12,7 +12,7 @@ eval `scramv1 runtime -sh`
 
 mkdir Haamm/
 cd Haamm
-git clone -b $4 https://github.com/helfaham/HaNaMiniAnalyzer/
+git clone -b $4 https://github.com/masoumehtavakoli/HaNaMiniAnalyzer.git
 cd HaNaMiniAnalyzer/
 git checkout $4
 scram b
@@ -30,11 +30,18 @@ else
     fi
 fi
 
-echo cmsRun PUAnalyzer_cfg.py sample=$5 job=$FILEID output=$6 maxEvents=-1 nFilesPerJob=$8
-cmsRun PUAnalyzer_cfg.py sample=$5 job=$FILEID output=$6 maxEvents=-1 nFilesPerJob=$8
+echo cmsRun SimplePUAnalyzer_cfg.py sample=$5 job=$FILEID output=$6 maxEvents=1000 nFilesPerJob=$8
+cmsRun SimplePUAnalyzer_cfg.py sample=$5 job=$FILEID output=$6 maxEvents=1000 nFilesPerJob=$8
 
 outfilename=`ls $6*$5*.root`
 outfilenames=`ls *$6*$5*.root`
+
+ls -l $outfilenames
+
+python3 main_script.py -R $outfilenames
+
+outfilename=`ls $6*$5*.hd5`
+outfilenames=`ls *$6*$5*.hd5`
 
 ls -l $outfilenames
 

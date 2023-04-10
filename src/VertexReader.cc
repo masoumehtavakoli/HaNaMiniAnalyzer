@@ -4,6 +4,7 @@ VertexReader::VertexReader( edm::ParameterSet const& iPS, edm::ConsumesCollector
     BaseEventReader< VertexCollection >( iPS , &iC ),
     IsData( isData )
 {
+  cout << "Vertex: IsData:" << IsData << endl;
   if( !IsData ){
     PileupToken_ = iC.consumes<std::vector<PileupSummaryInfo>>(iPS.getParameter<edm::InputTag>("pileupSrc")) ;
     //LumiWeights_ = edm::LumiReWeighting( SetupDir + "/pileUpMC.root" ,
@@ -91,6 +92,6 @@ double VertexReader::Read( const edm::Event& iEvent ){
       puWeight = 1; //LumiWeights_.weight(PupInfo->begin()->getTrueNumInteractions());
     }else
       puWeight = 1.0;
-    
+    //cout << "VR: npv " << npv << endl;
     return puWeight;
 }

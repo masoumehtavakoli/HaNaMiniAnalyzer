@@ -62,7 +62,7 @@ import os
 process.PUAnalyzer.sample = theSample.Name
 #process.PUAnalyzer.LHE.useLHEW = theSample.LHEWeight
 process.PUAnalyzer.isData = theSample.IsData
-
+print('isdata ={0}'.format(theSample.IsData))
 if not ( options.job < theSample.MakeJobs( options.nFilesPerJob ,  options.output ) ):
     raise NameError("Job %d is not in the list of the jobs of sample %s with %d files per run" % (options.job , options.sample , options.nFilesPerJob ) )
 

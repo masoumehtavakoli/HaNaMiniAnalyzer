@@ -30,18 +30,24 @@ else
     fi
 fi
 
-echo cmsRun SimplePUAnalyzer_cfg.py sample=$5 job=$FILEID output=$6 maxEvents=1000 nFilesPerJob=$8
-cmsRun SimplePUAnalyzer_cfg.py sample=$5 job=$FILEID output=$6 maxEvents=1000 nFilesPerJob=$8
+echo cmsRun SimplePUAnalyzer_cfg.py sample=$5 job=$FILEID output=$6 nFilesPerJob=$8
+cmsRun SimplePUAnalyzer_cfg.py sample=$5 job=$FILEID output=$6 nFilesPerJob=$8
 
 outfilename=`ls $6*$5*.root`
 outfilenames=`ls *$6*$5*.root`
 
 ls -l $outfilenames
 
-python3 main_script.py -R $outfilenames
+eval `scram unsetenv -sh`
+source /cvmfs/sft.cern.ch/lcg/views/LCG_102b_cuda/x86_64-centos7-gcc8-opt/setup.sh
 
-outfilename=`ls $6*$5*.hd5`
-outfilenames=`ls *$6*$5*.hd5`
+./ConvertToHD5.py --input $outfilenames
+#python3 main_script.py -R $outfilenames
+
+rm -f $outfilenames
+
+outfilename=`ls $6*$5*.h5`
+outfilenames=`ls *$6*$5*.*`
 
 ls -l $outfilenames
 

@@ -15,7 +15,6 @@ VertexReader::VertexReader( edm::ParameterSet const& iPS, edm::ConsumesCollector
 
 bool VertexReader::CheckVertex(VertexCollection::value_type vtx , double cutOnZ , double cutonNdof){ 
   if( !IsData ) return true; 
-  //cout << vtx.position().z() << " " << vtx.ndof() << "  " << vtx.position() << endl;
   return (fabs(vtx.position().z()) < cutOnZ &&
 	  vtx.ndof() > cutonNdof &&
 	  vtx.position().rho() < 2.0 ); 
@@ -32,10 +31,12 @@ double VertexReader::Read( const edm::Event& iEvent ){
     nVeryGoodVtx =0;
     //ndof=0;
     nVVeryGoodVer = 0;
-    auto vtx = handle->front();
+    auto vtx = handle->at(0);
     //cout << handle->size() << endl;
-    if(!CheckVertex(vtx) )
+    if(!CheckVertex(vtx) ){
+      //cout << IsData << "; first vertex rejected" << endl;
       return -1.0;
+    }
     else{
       nTracksPV = vtx.tracksSize();
       nTracksW05PV = vtx.nTracks(0.5);

@@ -56,7 +56,7 @@ double VertexReader::Read( const edm::Event& iEvent ){
         nVeryGoodVtx++;
       }
       if ( CheckVertex(vtx1, 5, 8)){
-        ndof[nVVeryGoodVer] = vtx1.ndof();
+        //ndof[nVVeryGoodVer] = vtx1.ndof();
 	nVVeryGoodVer++;
       }
         

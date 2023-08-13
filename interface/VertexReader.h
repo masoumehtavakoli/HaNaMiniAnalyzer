@@ -25,7 +25,7 @@ public:
   int nVeryGoodVtx;
   int nTracksPV;
   int nTracksW05PV;
-  double ndof[50];
+  //double ndof[50];
   int nTracksAll;
   int nTracksW05All;
   int nVVeryGoodVer ;

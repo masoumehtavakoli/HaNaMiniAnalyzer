@@ -11,7 +11,7 @@ if not len(sys.argv) == 3 :
 prefix = "out"
 #OutPath = "/%s/%s/" % (sys.argv[2], user )
 #OutPath = "/eos/cms/store/user/%s/%s/" % (user, sys.argv[2] )
-OutPath = "/eos/home-m/mjalalva/Run1/"
+OutPath = "/eos/home-m/mjalalva/Run1/June4/"
 
 from SamplesPU.Samples import MINIAOD22 as samples
 for sample in samples:

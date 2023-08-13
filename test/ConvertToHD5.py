@@ -65,8 +65,11 @@ def main():
         nVertices = torch.tensor([tree.nVertices], dtype=torch.int32)
         nVGoodVertices = torch.tensor([tree.nVGoodVertices], dtype=torch.int32)
 
-        node_features = torch.stack((phi, charge, energy, p, pt, dz, dxy, eta, Type), dim=1)
-        graph_attr = torch.stack((nVertices, nVGoodVertices), dim=0)
+        # node_features = torch.stack((phi, charge, energy, p, pt, dz, dxy, eta, Type), dim=1)
+        # graph_attr = torch.stack((nVertices, nVGoodVertices), dim=0)
+
+        node_features = torch.stack((phi, pt, dz, dxy, eta, Type), dim=1)
+        graph_attr = torch.stack((nVertices), dim=0)
 
         edge_index , edge_attr = GetEdgeInfo(eta , phi , opt.maxDR)
 

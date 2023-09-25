@@ -34,7 +34,7 @@ def GetEdgeInfo(eta , phi ,max_distance):
 def main():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument( '--input' , dest='input' , help='the input root file name' , type=str )
-    parser.add_argument( '--maxDR' , dest='maxDR' , help='the cut on the dr to construct the graph' , type=float , default=0.2 )
+    parser.add_argument( '--maxDR' , dest='maxDR' , help='the cut on the dr to construct the graph' , type=float , default=0.5 )
     opt = parser.parse_args()
         
     file = ROOT.TFile(opt.input)
@@ -68,7 +68,7 @@ def main():
         # node_features = torch.stack((phi, charge, energy, p, pt, dz, dxy, eta, Type), dim=1)
         # graph_attr = torch.stack((nVertices, nVGoodVertices), dim=0)
 
-        node_features = torch.stack((phi, pt, dz, dxy, eta, Type), dim=1)
+        node_features = torch.stack((phi, pt, dz, dxy, eta, Type , charge , energy , p), dim=1)
         graph_attr = torch.stack((nVertices,), dim=0)
 
         edge_index , edge_attr = GetEdgeInfo(eta , phi , opt.maxDR)
